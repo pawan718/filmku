@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "994542360581",
+    "project_id": "filmku-6fd2e",
+    "storage_bucket": "filmku-6fd2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994542360581:android:370e55fb18aa47f565246c",
+        "android_client_info": {
+          "package_name": "com.example.netflix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994542360581-705e7gg0cm6rqhjfhjlcq8h08tmbjum4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSephQvXNUgNpx_ivg5h-Iry0BcM7DlCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994542360581-705e7gg0cm6rqhjfhjlcq8h08tmbjum4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
