@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:netflix/models/apicall.dart';
 import 'package:netflix/models/movie.dart';
+import 'package:netflix/screens/firstscreen.dart';
+import 'package:netflix/screens/loginscreen.dart';
 import 'package:netflix/screens/movie_details.dart';
 import 'package:netflix/screens/seemorescreen.dart';
 import '../contants.dart';
@@ -15,6 +18,7 @@ class homescreen extends StatefulWidget {
 }
 
 class _homescreenState extends State<homescreen> {
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   List<Movie> movies = [];
   List<Movie> movies2  = [];
@@ -22,9 +26,7 @@ class _homescreenState extends State<homescreen> {
   @override
   void initState() {
     super.initState();
-
       getMovies();
-
   }
 
   Future<void> getMovies() async {
@@ -52,7 +54,10 @@ class _homescreenState extends State<homescreen> {
         title: SvgPicture.asset("images/FilmKu.svg"),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+            await  auth.signOut();
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => FirstScreen()));
+            },
             icon: SvgPicture.asset(
               "images/Path.svg",
               width: 16,

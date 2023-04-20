@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:netflix/screens/firstscreen.dart';
 import 'package:netflix/screens/home_screen.dart';
 import 'package:netflix/screens/loginscreen.dart';
 import 'package:netflix/screens/signupscreen.dart';
@@ -11,17 +13,29 @@ void main() async {
 
   // initializing the firebase app
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  FirebaseAuth auth = FirebaseAuth.instance;
+  Widget checkuser(){
+    if(auth.currentUser != null){
+      return homescreen();
+    }
+    return FirstScreen();
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(brightness: Brightness.light),
-      home: SignupScreen(),
+      home: checkuser(),
     );
   }
 }

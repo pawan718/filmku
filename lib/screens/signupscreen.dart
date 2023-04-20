@@ -19,6 +19,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  bool passwordVisible = true;
   final _formKey = GlobalKey<FormState>();
   SignupDataModel dataModel = SignupDataModel();
   final _auth = FirebaseAuth.instance;
@@ -55,6 +56,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   height: 20,
                 ),
                 NewInputField(
+                  obscuretext: false,
                   onPressed: (value) {
                     email = value;
                   },
@@ -77,6 +79,14 @@ class _SignupScreenState extends State<SignupScreen> {
                   height: 20,
                 ),
                 NewInputField(
+                  suffixicon: IconButton(icon: Icon(passwordVisible
+                      ? Icons.visibility
+                      : Icons.visibility_off),onPressed: (){
+                    setState(() {
+                      passwordVisible = !passwordVisible;
+                    });
+                  },),
+                  obscuretext: passwordVisible,
                   onPressed: (value) {},
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -144,7 +154,13 @@ class _SignupScreenState extends State<SignupScreen> {
                   child: SocialLoginButton(
                     borderRadius: 100,
                     buttonType: SocialLoginButtonType.facebook,
-                    onPressed: () {},
+                    onPressed: () async {
+                      UserCredential value = await dataModel.signInWithFacebook();
+                      if(value!=null){
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => homescreen()));
+                      }
+
+                    },
                   ),
                 ),
                 Row(
